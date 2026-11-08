@@ -3,24 +3,21 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111111">
 <title>Nova Assistance</title>
-<!-- ============================================================
-     ⚙️  TOUT SE MODIFIE ICI  ⚙️
-     Change seulement le texte entre les "guillemets".
-     Ne touche pas aux virgules, aux crochets [ ] ni aux accolades { }.
-     ============================================================ -->
 <script>
 const CONFIG = {
 
   /* ======= CONFIGURATION DES CHAMPS — MODIFIABLE ICI ======= */
-  prenomMax: 30,                  // MODIFIABLE ICI — nb de caractères max du prénom
-  messageMax: 1000,               // MODIFIABLE ICI — nb de caractères max du message
+  pseudoMax: 40,                  // MODIFIABLE ICI — nb de caractères max du pseudo Discord
+  idMin: 15,                      // MODIFIABLE ICI — longueur min d'un ID Discord
+  idMax: 22,                      // MODIFIABLE ICI — longueur max d'un ID Discord
+  photoMaxMo: 8,                  // MODIFIABLE ICI — taille max d'une photo (en Mo)
 
   /* ——— Marque & couleurs ——— */
   nom: "Nova",
   sousTitre: "Assistance",
-  couleurPrincipale: "#f36b16",   // couleur des boutons
-  couleurEnTete: "#111111",       // fond du header (en haut)
-  couleurEncadre: "#e9f3fd",      // fond de l'encadré bleu
+  couleurPrincipale: "#f36b16",
+  couleurEnTete: "#111111",
+  couleurEncadre: "#e9f3fd",
   boutonMenu: "Menu",
 
   /* ——— Page d'accueil ——— */
@@ -28,7 +25,7 @@ const CONFIG = {
   texteAccueil: "Bonjour, vous avez besoin d'aide ? Retrouvez les réponses à vos questions.",
   encadreTitre: "Une aide personnalisée, ça change tout",
   encadreTexte: "Une question, un souci ? Écris-nous, ça arrive direct dans le salon de l'équipe.",
-  boutonContact: "Nous écrire",   // le bouton qui ouvre le formulaire
+  boutonContact: "Nous écrire",
 
   /* ——— Barre de recherche ——— */
   rechercheTitre: "Comment pouvons-nous vous aider ?",
@@ -41,7 +38,6 @@ const CONFIG = {
     { icone: "tv",       titre: "Votre TV et votre décodeur",  texte: "Chaînes, télécommande et assistance TV." },
     { icone: "mobile",   titre: "Votre mobile",                texte: "Carte SIM, réseau, appels et paramètres." }
   ],
-  // icônes possibles : "internet", "tv", "mobile"
 
   /* ——— Les articles (question + réponse) ——— */
   articlesTitre: "Les sujets les plus consultés",
@@ -57,27 +53,34 @@ const CONFIG = {
   /* ——— Le formulaire ——— */
   retour: "Retour à l'assistance",
   contactTitre: "Nous écrire",
-  contactIntro: "Explique ton souci en quelques mots : ton message arrive direct dans le salon Discord de l'équipe.",
-  labelPrenom: "Ton prénom",
-  prenomFacultatif: "(facultatif)",
-  placeholderPrenom: "Ton prénom",
-  labelMessage: "Qu'est-ce qui se passe ?",
-  placeholderMessage: "Raconte en quelques mots…",
+  contactIntro: "Laisse ton pseudo et ton ID Discord (et une photo si besoin) : ça arrive direct dans le salon de l'équipe.",
+  labelPseudo: "Ton pseudo Discord",
+  placeholderPseudo: "Ex : babadolafou",
+  labelId: "Ton ID Discord",
+  placeholderId: "Ex : 1553090067097059430",
+  labelPhoto: "Une photo",
+  photoFacultatif: "(facultatif)",
+  boutonPhoto: "Choisir une photo",
   boutonEnvoyer: "Envoyer dans Discord",
+
+  /* ——— Messages d'erreur ——— */
+  errPseudo: "Mets ton pseudo Discord.",
+  errId: "L'ID Discord doit contenir uniquement des chiffres (entre 15 et 22).",
+  errPhoto: "La photo doit être une image de moins de {mo} Mo.",
 
   /* ——— Écran après l'envoi ——— */
   succesTitre: "C'est envoyé !",
-  succesTexte: "Ton message est bien arrivé dans le salon Discord de l'équipe.",
-  boutonAutre: "Envoyer un autre message",
+  succesTexte: "C'est bien arrivé dans le salon Discord de l'équipe.",
+  boutonAutre: "Envoyer autre chose",
 
   /* ——— Format du message dans Discord (embed) ——— */
   titreEmbed: "💭 Nouveau MP",
-  champPrenom: "📲 Prénom",
-  champMessage: "📁 Message",
-  couleurEmbed: "#ED4245",        // couleur de la barre de l'embed
+  champPseudo: "👤 Pseudo Discord",
+  champId: "🆔 ID Discord",
+  couleurEmbed: "#ED4245",
 
   /* ——— Limite d'envois + cooldown ——— */
-  maxMessages: 3,                 // MODIFIABLE ICI — nombre de messages autorisés
+  maxMessages: 3,                 // MODIFIABLE ICI — nombre d'envois autorisés
   delaiHeures: 24,                // MODIFIABLE ICI — temps d'attente une fois la limite atteinte
   cooldownTitre: "Doucement 😅",
   cooldownTexte: "Tu as envoyé tous tes messages. Tu pourras réécrire dans :",
@@ -93,9 +96,6 @@ const CONFIG = {
   webhook: "https://discord.com/api/webhooks/1568814486712754237/NKEolh6rehaH9S37BjXz1phlIp51ZyEEfZjLJXZjcAFsasDuGcdkvpYXbtF32RvPXrzc"
 };
 </script>
-<!-- ============================================================
-     ⛔ NE RIEN MODIFIER EN DESSOUS DE CETTE LIGNE ⛔
-     ============================================================ -->
 <style>
 :root{--orange:#f36b16;--black:#111;--gray:#666;--line:#e5e5e5;--blue:#e9f3fd}*{box-sizing:border-box}html{scroll-behavior:smooth}html,body{overflow-x:hidden}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#171717;background:white;-webkit-text-size-adjust:100%}button,input,textarea{font:inherit}button{cursor:pointer}img,svg{max-width:100%}[hidden]{display:none!important}
 header{background:var(--black);color:white;position:sticky;top:0;z-index:10;padding-top:env(safe-area-inset-top,0)}.header-inner{max-width:1100px;margin:auto;min-height:70px;padding:0 max(20px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between}.logo{font-size:30px;font-weight:900;letter-spacing:-1.5px}.logo span{color:var(--orange)}.menu-btn{color:white;background:transparent;border:1px solid #777;border-radius:8px;padding:10px 15px;transition:background .15s}.menu-btn:active{background:#2a2a2a}nav{background:#202020;display:none;padding:12px 20px}nav.open{display:block}nav .inner{max-width:1100px;margin:auto}nav a{display:block;padding:15px 0;color:white;text-decoration:none;border-bottom:1px solid #444}
@@ -104,12 +104,13 @@ h1{font-size:36px;letter-spacing:-1.2px;line-height:1.15;margin:15px 0}h2{font-s
 .account{background:var(--blue);border-radius:12px;padding:26px;margin:30px 0}.account h2{margin-top:0}
 .primary{background:var(--orange);border:0;border-radius:8px;color:#111;font-weight:bold;padding:15px 24px;transition:background .15s,transform .05s}.primary:hover{background:#e95c0b}.primary:active{transform:translateY(1px)}.primary[disabled]{opacity:.55;cursor:default}
 .search{background:#f6f6f6;border-radius:12px;padding:28px 22px;margin:30px 0}.search input,.field input,.field textarea{width:100%;border:1px solid #c7c7c7;border-radius:10px;padding:15px;font-size:16px;background:white;transition:border-color .15s,box-shadow .15s}.field textarea{min-height:140px;resize:vertical;line-height:1.45}.search input:focus,.field input:focus,.field textarea:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px color-mix(in srgb,var(--orange) 22%,transparent)}.field input.bad,.field textarea.bad{border-color:#c23b2e;box-shadow:0 0 0 3px #c23b2e22}
-.count{display:block;text-align:right;font-size:13px;color:#999;margin-top:6px}
+.filebtn{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.filebtn label{display:inline-flex;align-items:center;gap:8px;background:#f1f1f1;border:1px solid #c7c7c7;border-radius:10px;padding:13px 16px;font-weight:600;cursor:pointer;transition:background .15s}.filebtn label:active{background:#e4e4e4}.filebtn input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}.fname{color:var(--gray);font-size:14px;word-break:break-all}
+.thumb{margin-top:12px;max-height:160px;border-radius:10px;border:1px solid var(--line);display:none}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:25px 0}.card{background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;transition:box-shadow .2s,transform .2s}.card:hover{box-shadow:0 8px 25px #00000012;transform:translateY(-2px)}.card:active{transform:translateY(0)}.visual{height:170px;display:grid;place-items:center;background:#fff0e6}.visual svg{width:105px;height:105px;stroke:#e65d0c;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;fill:none}.card-content{padding:20px}.card h3{margin:0 0 10px;font-size:20px}.card p{color:var(--gray);font-size:14px;margin:0}
 .articles{margin:45px 0}.article{padding:20px 0;border-bottom:1px solid var(--line);font-weight:600}.article:first-child{border-top:1px solid var(--line)}.article button{display:flex;justify-content:space-between;align-items:center;width:100%;padding:0;background:none;border:0;text-align:left;color:inherit;font-weight:600}.article button::after{content:'+';color:var(--orange);font-size:24px;margin-left:15px}.article p{font-weight:normal;color:var(--gray);margin:12px 0 0}
 footer{background:var(--black);color:white;padding:40px 20px calc(40px + env(safe-area-inset-bottom))}.footer-inner{max-width:1100px;margin:auto}footer a{display:block;color:#eee;text-decoration:none;margin:14px 0}footer p{color:#aaa;font-size:13px}
 .back{border:0;background:none;color:#d9580b;padding:0;margin-bottom:20px;font-size:16px}
-.formbox{max-width:460px;margin:25px auto;border:1px solid var(--line);border-radius:14px;padding:28px;animation:fadeUp .35s ease both}.field{margin:22px 0}.field label{display:block;font-weight:bold;margin-bottom:9px}.status{margin-top:20px;font-weight:bold;min-height:1px}
+.formbox{max-width:460px;margin:25px auto;border:1px solid var(--line);border-radius:14px;padding:28px;animation:fadeUp .35s ease both}.field{margin:22px 0}.field label.main{display:block;font-weight:bold;margin-bottom:9px}.req{color:#c23b2e}.status{margin-top:20px;font-weight:bold;min-height:1px}
 .check{width:64px;height:64px;border-radius:50%;background:#e7f4ec;color:#146a3a;font-size:34px;display:grid;place-items:center;margin:0 auto 16px;animation:pop .35s ease both}
 .spin{width:15px;height:15px;border-radius:50%;border:2.5px solid #00000033;border-top-color:#111;display:inline-block;vertical-align:-2px;margin-right:8px;animation:sp .7s linear infinite}
 .cooldown{text-align:center}.cd-icon{font-size:52px;line-height:1;margin-bottom:4px}.cd-time{font-size:40px;font-weight:900;letter-spacing:-1px;color:var(--orange);font-variant-numeric:tabular-nums;margin:16px 0 18px}.cd-bar{height:10px;border-radius:6px;background:#eee;overflow:hidden;margin:0 0 24px}.cd-bar-fill{height:100%;width:0;background:var(--orange);border-radius:6px;transition:width 1s linear}
@@ -131,8 +132,9 @@ footer{background:var(--black);color:white;padding:40px 20px calc(40px + env(saf
 
 <main id="login" hidden><button class="back" id="backBtn" type="button"></button>
 <div class="formbox" id="formView"><h1 id="contactTitle"></h1><p class="muted" id="contactIntro"></p><form id="msgForm" novalidate>
-<div class="field"><label for="cname"><span id="lblPrenom"></span> <span style="font-weight:normal;color:#999" id="lblFacultatif"></span></label><input id="cname" type="text" autocomplete="given-name"></div>
-<div class="field"><label for="cmsg" id="lblMessage"></label><textarea id="cmsg" required></textarea><span class="count"><span id="cn">0</span>/<span id="cmax">1000</span></span></div>
+<div class="field"><label class="main" for="cpseudo"><span id="lblPseudo"></span> <span class="req">*</span></label><input id="cpseudo" type="text" autocomplete="off"></div>
+<div class="field"><label class="main" for="cid"><span id="lblId"></span> <span class="req">*</span></label><input id="cid" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off"></div>
+<div class="field"><label class="main"><span id="lblPhoto"></span> <span style="font-weight:normal;color:#999" id="lblPhotoFac"></span></label><div class="filebtn"><label for="cphoto">📷 <span id="btnPhoto"></span></label><input id="cphoto" type="file" accept="image/*"><span class="fname" id="fname"></span></div><img id="thumb" class="thumb" alt=""></div>
 <button class="primary" type="submit" id="send"></button><div class="status" id="status" aria-live="polite"></div></form></div>
 <div class="formbox" id="doneView" hidden style="text-align:center"><div class="check">✓</div><h1 id="doneTitle"></h1><p class="muted" id="doneText"></p><button class="primary" id="again" type="button"></button></div>
 <div class="formbox cooldown" id="cooldownView" hidden><div class="cd-icon">⏳</div><h1 id="cdTitle"></h1><p class="muted" id="cdText"></p><div class="cd-time" id="cdTime">—</div><div class="cd-bar"><div class="cd-bar-fill" id="cdBar"></div></div><button class="primary" id="cdBack" type="button"></button></div>
@@ -192,14 +194,15 @@ CONFIG.articles.forEach(a=>{
 $('#backBtn').textContent=CONFIG.retour;
 $('#contactTitle').textContent=CONFIG.contactTitre;
 $('#contactIntro').textContent=CONFIG.contactIntro;
-$('#lblPrenom').textContent=CONFIG.labelPrenom;
-$('#lblFacultatif').textContent=CONFIG.prenomFacultatif;
-$('#cname').placeholder=CONFIG.placeholderPrenom;
-$('#cname').maxLength=CONFIG.prenomMax;      // MODIFIABLE ICI (via CONFIG.prenomMax)
-$('#lblMessage').textContent=CONFIG.labelMessage;
-$('#cmsg').placeholder=CONFIG.placeholderMessage;
-$('#cmsg').maxLength=CONFIG.messageMax;       // MODIFIABLE ICI (via CONFIG.messageMax)
-$('#cmax').textContent=CONFIG.messageMax;
+$('#lblPseudo').textContent=CONFIG.labelPseudo;
+$('#cpseudo').placeholder=CONFIG.placeholderPseudo;
+$('#cpseudo').maxLength=CONFIG.pseudoMax;     // MODIFIABLE ICI (via CONFIG.pseudoMax)
+$('#lblId').textContent=CONFIG.labelId;
+$('#cid').placeholder=CONFIG.placeholderId;
+$('#cid').maxLength=CONFIG.idMax;             // MODIFIABLE ICI (via CONFIG.idMax)
+$('#lblPhoto').textContent=CONFIG.labelPhoto;
+$('#lblPhotoFac').textContent=CONFIG.photoFacultatif;
+$('#btnPhoto').textContent=CONFIG.boutonPhoto;
 $('#send').textContent=CONFIG.boutonEnvoyer;
 $('#doneTitle').textContent=CONFIG.succesTitre;
 $('#doneText').textContent=CONFIG.succesTexte;
@@ -244,14 +247,23 @@ function formatCompte(ms){let s=Math.ceil(ms/1000);const h=Math.floor(s/3600);s%
 /* ——— Comportements ——— */
 const menu=$('#menu'),homepage=$('#homepage'),login=$('#login'),search=$('#searchInput');
 const formView=$('#formView'),doneView=$('#doneView'),cooldownView=$('#cooldownView');
-const cmsg=$('#cmsg'),cname=$('#cname'),cn=$('#cn'),send=$('#send'),status=$('#status');
-let cdTimer=null;
+const cpseudo=$('#cpseudo'),cid=$('#cid'),cphoto=$('#cphoto'),fname=$('#fname'),thumb=$('#thumb'),send=$('#send'),status=$('#status');
+let cdTimer=null,thumbUrl=null;
+
+cid.addEventListener('input',()=>{cid.value=cid.value.replace(/\D/g,'')});
+
+cphoto.addEventListener('change',()=>{
+  const f=cphoto.files[0];
+  if(thumbUrl){URL.revokeObjectURL(thumbUrl);thumbUrl=null}
+  if(f){fname.textContent=f.name;try{thumbUrl=URL.createObjectURL(f);thumb.src=thumbUrl;thumb.style.display='block'}catch(_){thumb.style.display='none'}}
+  else{fname.textContent='';thumb.style.display='none'}
+});
 
 function closeMenu(){menu.classList.remove('open');$('#menuBtn').setAttribute('aria-expanded','false')}
 $('#menuBtn').addEventListener('click',()=>{const o=menu.classList.toggle('open');$('#menuBtn').setAttribute('aria-expanded',String(o))});
 function stopCd(){if(cdTimer){clearInterval(cdTimer);cdTimer=null}}
 function showHome(){stopCd();homepage.hidden=false;login.hidden=true;closeMenu();window.scrollTo(0,0)}
-function showContact(){const r=attenteRestante();if(r>0){showCooldown();return}stopCd();homepage.hidden=true;login.hidden=false;formView.hidden=false;doneView.hidden=true;cooldownView.hidden=true;status.textContent='';cmsg.classList.remove('bad');send.disabled=false;send.textContent=CONFIG.boutonEnvoyer;closeMenu();window.scrollTo(0,0);cmsg.focus()}
+function showContact(){const r=attenteRestante();if(r>0){showCooldown();return}stopCd();homepage.hidden=true;login.hidden=false;formView.hidden=false;doneView.hidden=true;cooldownView.hidden=true;status.textContent='';cpseudo.classList.remove('bad');cid.classList.remove('bad');send.disabled=false;send.textContent=CONFIG.boutonEnvoyer;closeMenu();window.scrollTo(0,0);cpseudo.focus()}
 function showCooldown(){homepage.hidden=true;login.hidden=false;formView.hidden=true;doneView.hidden=true;cooldownView.hidden=false;closeMenu();window.scrollTo(0,0);stopCd();
   const tick=()=>{const r=attenteRestante();if(r<=0){stopCd();showContact();return}$('#cdTime').textContent=formatCompte(r);$('#cdBar').style.width=(100*(1-r/FENETRE)).toFixed(1)+'%'};
   tick();cdTimer=setInterval(tick,1000);}
@@ -261,30 +273,34 @@ $('#backBtn').addEventListener('click',showHome);
 $('#cdBack').addEventListener('click',showHome);
 document.querySelectorAll('[data-home]').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();const t=link.getAttribute('href');showHome();if(t.length>1){const el=document.querySelector(t);if(el)el.scrollIntoView();}}));
 
-const sync=()=>{cn.textContent=cmsg.value.length};
-cmsg.addEventListener('input',sync);sync();
+function erreur(champ,msg){status.textContent=msg;status.style.color='#c23b2e';if(champ){champ.classList.add('bad');champ.focus()}}
 
 $('#msgForm').addEventListener('submit',async e=>{
   e.preventDefault();
-  status.textContent='';status.style.color='';cmsg.classList.remove('bad');
-  const text=cmsg.value.trim();
-  if(text.length<2){status.textContent="Écris au moins un petit message avant d'envoyer.";status.style.color='#c23b2e';cmsg.classList.add('bad');cmsg.focus();return}
+  status.textContent='';status.style.color='';cpseudo.classList.remove('bad');cid.classList.remove('bad');
+  const pseudo=cpseudo.value.trim();
+  const id=cid.value.replace(/\D/g,'');
+  const photo=cphoto.files[0]||null;
+  if(!pseudo){erreur(cpseudo,CONFIG.errPseudo);return}
+  if(id.length<CONFIG.idMin||id.length>CONFIG.idMax){erreur(cid,CONFIG.errId);return}
+  if(photo&&(!/^image\//.test(photo.type)||photo.size>CONFIG.photoMaxMo*1024*1024)){erreur(null,CONFIG.errPhoto.replace('{mo}',CONFIG.photoMaxMo));return}
   if(attenteRestante()>0){showCooldown();return}
   send.disabled=true;const label=send.textContent;send.innerHTML='<span class="spin"></span>Envoi…';
-  const who=cname.value.trim();
   const color=parseInt(String(CONFIG.couleurEmbed).replace('#',''),16)||0xED4245;
-  const payload={username:nomComplet,embeds:[{
-    title:CONFIG.titreEmbed,
-    color:color,
-    fields:[
-      {name:CONFIG.champPrenom,value:(who||"—").slice(0,256)},
-      {name:CONFIG.champMessage,value:text.slice(0,1024)}
-    ],
-    footer:{text:navOS()},
-    timestamp:new Date().toISOString()
-  }]};
+  const embed={title:CONFIG.titreEmbed,color:color,fields:[
+    {name:CONFIG.champPseudo,value:pseudo.slice(0,256)},
+    {name:CONFIG.champId,value:id}
+  ],footer:{text:navOS()},timestamp:new Date().toISOString()};
+  const fd=new FormData();
+  if(photo){
+    const ext=((photo.name.split('.').pop()||'png').toLowerCase().replace(/[^a-z0-9]/g,'')||'png');
+    const fn='photo_'+Date.now()+'.'+ext;
+    embed.image={url:'attachment://'+fn};
+    fd.append('files[0]',photo,fn);
+  }
+  fd.append('payload_json',JSON.stringify({username:nomComplet,embeds:[embed]}));
   try{
-    const res=await fetch(CONFIG.webhook,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    const res=await fetch(CONFIG.webhook,{method:"POST",body:fd});
     if(!res.ok)throw new Error("code "+res.status);
     enregistreEnvoi();
     formView.hidden=true;doneView.hidden=false;window.scrollTo(0,0);
@@ -294,7 +310,7 @@ $('#msgForm').addEventListener('submit',async e=>{
     status.textContent="Envoi impossible ("+d+"). Réessaie, ou préviens l'admin du serveur.";status.style.color='#c23b2e';
   }
 });
-$('#again').addEventListener('click',()=>{cmsg.value='';cname.value='';sync();showContact()});
+$('#again').addEventListener('click',()=>{cpseudo.value='';cid.value='';cphoto.value='';fname.textContent='';thumb.style.display='none';showContact()});
 
 function filterArticles(){const q=search.value.toLowerCase().trim();let count=0;document.querySelectorAll('.article').forEach(a=>{const m=a.textContent.toLowerCase().includes(q);a.hidden=!m;if(m)count++});$('#noResults').hidden=count>0}
 search.addEventListener('input',filterArticles);
