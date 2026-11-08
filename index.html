@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111111">
+<title>Nova Assistance</title>
+<script>
+const CONFIG = {
+
+  /* ——— Marque & couleurs ——— */
+  nom: "Nova",
+  sousTitre: "Assistance",
+  couleurPrincipale: "#f36b16",
+  couleurEnTete: "#111111",
+  couleurEncadre: "#e9f3fd",
+  boutonMenu: "Menu",
+
+  /* ——— Page d'accueil ——— */
+  titreAccueil: "Aide et contact",
+  texteAccueil: "Bonjour, vous avez besoin d'aide ? Retrouvez les réponses à vos questions.",
+  encadreTitre: "Une aide personnalisée, ça change tout",
+  encadreTexte: "Une question, un souci ? Écris-nous, ça arrive direct dans le salon de l'équipe.",
+  boutonContact: "Nous écrire",
+
+  /* ——— Barre de recherche ——— */
+  rechercheTitre: "Comment pouvons-nous vous aider ?",
+  recherchePlaceholder: "Rechercher une solution...",
+
+  /* ——— Les 3 cartes ——— */
+  rubriquesTitre: "Choisissez votre équipement",
+  cartes: [
+    { icone: "internet", titre: "Votre internet et votre box", texte: "Connexion, Wi-Fi, installation et dépannage." },
+    { icone: "tv",       titre: "Votre TV et votre décodeur",  texte: "Chaînes, télécommande et assistance TV." },
+    { icone: "mobile",   titre: "Votre mobile",                texte: "Carte SIM, réseau, appels et paramètres." }
+  ],
+
+  /* ——— Les articles (question + réponse) ——— */
+  articlesTitre: "Les sujets les plus consultés",
+  articles: [
+    { question: "Résoudre un problème de connexion internet", reponse: "Vérifiez les branchements de votre box, redémarrez votre équipement et testez à nouveau votre connexion." },
+    { question: "Installer et configurer votre box",          reponse: "Branchez votre équipement, attendez son démarrage et suivez les instructions de configuration." },
+    { question: "Activer votre carte SIM",                    reponse: "Consultez les instructions fournies par votre opérateur pour activer votre carte SIM." },
+    { question: "Résoudre un problème de réseau mobile",      reponse: "Vérifiez le mode avion, la couverture réseau et les paramètres de votre téléphone." },
+    { question: "Dépanner votre décodeur TV",                 reponse: "Vérifiez les branchements HDMI et redémarrez votre décodeur si nécessaire." }
+  ],
+  aucunResultat: "Aucun résultat trouvé.",
+
+  /* ——— Le formulaire ——— */
+  retour: "Retour à l'assistance",
+  contactTitre: "Nous écrire",
+  contactIntro: "Explique ton souci en quelques mots : ton message arrive direct dans le salon Discord de l'équipe.",
+  labelMessage: "Qu'est-ce qui se passe ?",
+  placeholderMessage: "Raconte en quelques mots…",
+  boutonEnvoyer: "Envoyer dans Discord",
+
+  /* ——— Écran après l'envoi ——— */
+  succesTitre: "C'est envoyé !",
+  succesTexte: "Ton message est bien arrivé dans le salon Discord de l'équipe.",
+  boutonAutre: "Envoyer un autre message",
+
+  /* ——— Format du message dans Discord (embed) ——— */
+  titreEmbed: "💭 Nouveau MP",
+  champMessage: "📁 Message",
+  champUtilisateur: "👤 Utilisateur web",
+  couleurEmbed: "#ED4245",
+
+  /* ——— Limite d'envois + cooldown ——— */
+  maxMessages: 3,
+  delaiHeures: 24,
+  cooldownTitre: "Doucement 😅",
+  cooldownTexte: "Tu as envoyé tous tes messages. Tu pourras réécrire dans :",
+  cooldownBouton: "Retour à l'accueil",
+
+  /* ——— Pied de page ——— */
+  footerColonneTitre: "Assistance",
+  footerLiens: ["Aide et contact", "Internet et box", "TV et décodeur", "Mobile"],
+  footerInfosTitre: "Informations",
+  footerInfosTexte: "Nova Assistance est un centre d'aide indépendant. Il n'est pas affilié à un opérateur téléphonique.",
+
+  /* ——— Ton salon Discord (webhook) ——— */
+  webhook: "https://discord.com/api/webhooks/1568814486712754237/NKEolh6rehaH9S37BjXz1phlIp51ZyEEfZjLJXZjcAFsasDuGcdkvpYXbtF32RvPXrzc"
+};
+</script>
+<style>
+:root{--orange:#f36b16;--black:#111;--gray:#666;--line:#e5e5e5;--blue:#e9f3fd}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#171717;background:white}button,input,textarea{font:inherit}button{cursor:pointer}[hidden]{display:none!important}header{background:var(--black);color:white;position:sticky;top:0;z-index:10}.header-inner{max-width:1100px;margin:auto;min-height:70px;padding:0 20px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:30px;font-weight:900;letter-spacing:-1.5px}.logo span{color:var(--orange)}.menu-btn{color:white;background:transparent;border:1px solid #777;border-radius:5px;padding:10px 15px}nav{background:#202020;display:none;padding:12px 20px}nav.open{display:block}nav .inner{max-width:1100px;margin:auto}nav a{display:block;padding:15px 0;color:white;text-decoration:none;border-bottom:1px solid #444}main{max-width:1100px;margin:auto;padding:28px 20px}h1{font-size:36px;letter-spacing:-1.2px;line-height:1.15;margin:15px 0}h2{font-size:27px;letter-spacing:-.6px;line-height:1.2}p{line-height:1.6}.muted{color:var(--gray)}.account{background:var(--blue);border-radius:8px;padding:26px;margin:30px 0}.account h2{margin-top:0}.primary{background:var(--orange);border:0;border-radius:5px;color:#111;font-weight:bold;padding:15px 24px}.primary:hover{background:#e95c0b}.primary[disabled]{opacity:.55;cursor:default}.search{background:#f6f6f6;border-radius:8px;padding:28px 22px;margin:30px 0}.search input,.field input,.field textarea{width:100%;border:1px solid #aaa;border-radius:5px;padding:15px;font-size:16px;background:white}.field textarea{min-height:140px;resize:vertical;line-height:1.45}.search input:focus,.field input:focus,.field textarea:focus{outline:2px solid var(--orange);border-color:var(--orange)}.count{display:block;text-align:right;font-size:13px;color:#999;margin-top:6px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:25px 0}.card{background:white;border:1px solid var(--line);border-radius:9px;overflow:hidden;cursor:pointer;transition:box-shadow .2s,transform .2s}.card:hover{box-shadow:0 8px 25px #00000012;transform:translateY(-2px)}.visual{height:170px;display:grid;place-items:center;background:#fff0e6}.visual svg{width:105px;height:105px;stroke:#e65d0c;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;fill:none}.card-content{padding:20px}.card h3{margin:0 0 10px;font-size:20px}.card p{color:var(--gray);font-size:14px;margin:0}.articles{margin:45px 0}.article{padding:20px 0;border-bottom:1px solid var(--line);font-weight:600}.article:first-child{border-top:1px solid var(--line)}.article button{display:flex;justify-content:space-between;align-items:center;width:100%;padding:0;background:none;border:0;text-align:left;color:inherit;font-weight:600}.article button::after{content:'+';color:var(--orange);font-size:24px;margin-left:15px}.article p{font-weight:normal;color:var(--gray);margin:12px 0 0}footer{background:var(--black);color:white;padding:40px 20px}.footer-inner{max-width:1100px;margin:auto}footer a{display:block;color:#eee;text-decoration:none;margin:14px 0}footer p{color:#aaa;font-size:13px}.back{border:0;background:none;color:#d9580b;padding:0;margin-bottom:20px;font-size:16px}.formbox{max-width:460px;margin:25px auto;border:1px solid var(--line);border-radius:10px;padding:28px}.field{margin:22px 0}.field label{display:block;font-weight:bold;margin-bottom:9px}.status{margin-top:20px;font-weight:bold}.check{width:64px;height:64px;border-radius:50%;background:#e7f4ec;color:#146a3a;font-size:34px;display:grid;place-items:center;margin:0 auto 16px}.spin{width:15px;height:15px;border-radius:50%;border:2.5px solid #00000033;border-top-color:#111;display:inline-block;vertical-align:-2px;margin-right:8px;animation:sp .7s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+.cooldown{text-align:center}.cd-icon{font-size:52px;line-height:1;margin-bottom:4px}.cd-time{font-size:40px;font-weight:900;letter-spacing:-1px;color:var(--orange);font-variant-numeric:tabular-nums;margin:16px 0 18px}.cd-bar{height:10px;border-radius:6px;background:#eee;overflow:hidden;margin:0 0 24px}.cd-bar-fill{height:100%;width:0;background:var(--orange);border-radius:6px;transition:width 1s linear}
+@media(max-width:700px){.header-inner{min-height:65px}h1{font-size:31px}h2{font-size:25px}.cards{grid-template-columns:1fr}.card{display:flex;align-items:center;min-height:155px}.visual{width:38%;min-width:120px;height:155px}.visual svg{width:75px;height:75px}.card-content{padding:16px}.card h3{font-size:18px}.account{padding:23px}.formbox{padding:22px}.cd-time{font-size:34px}}
+</style>
+</head>
+<body>
+<header><div class="header-inner"><div class="logo" id="logo"></div><button class="menu-btn" id="menuBtn" type="button" aria-expanded="false"></button></div><nav id="menu"><div class="inner" id="navInner"></div></nav></header>
+
+<main id="homepage">
+<h1 id="homeTitle"></h1><p class="muted" id="homeText"></p>
+<section class="account"><h2 id="accountTitle"></h2><p id="accountText"></p><button class="primary" id="loginBtn" type="button"></button></section>
+<section class="search"><h2 id="searchTitle"></h2><input id="searchInput" type="search" aria-label="Rechercher une solution"></section>
+<section id="categories"><h2 id="rubriquesTitle"></h2><div class="cards" id="cards"></div></section>
+<section class="articles" id="articlesSection"><h2 id="articlesTitle"></h2><div id="articles"></div><p id="noResults" class="muted" hidden></p></section>
+</main>
+
+<main id="login" hidden><button class="back" id="backBtn" type="button"></button>
+<div class="formbox" id="formView"><h1 id="contactTitle"></h1><p class="muted" id="contactIntro"></p><form id="msgForm" novalidate>
+<div class="field"><label for="cmsg" id="lblMessage"></label><textarea id="cmsg" maxlength="1000" required></textarea><span class="count"><span id="cn">0</span>/1000</span></div>
+<button class="primary" type="submit" id="send"></button><div class="status" id="status" aria-live="polite"></div></form></div>
+<div class="formbox" id="doneView" hidden style="text-align:center"><div class="check">✓</div><h1 id="doneTitle"></h1><p class="muted" id="doneText"></p><button class="primary" id="again" type="button"></button></div>
+<div class="formbox cooldown" id="cooldownView" hidden><div class="cd-icon">⏳</div><h1 id="cdTitle"></h1><p class="muted" id="cdText"></p><div class="cd-time" id="cdTime">—</div><div class="cd-bar"><div class="cd-bar-fill" id="cdBar"></div></div><button class="primary" id="cdBack" type="button"></button></div>
+</main>
+
+<footer><div class="footer-inner"><div class="logo" id="logoFooter"></div><h3 id="footerCol"></h3><div id="footerLinks"></div><h3 id="footerInfoTitle"></h3><p id="footerInfoText"></p><p id="footerCopy"></p></div></footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const ICONES={
+  internet:'<rect x="15" y="30" width="70" height="45" rx="6"/><path d="M25 63h50M35 44h30M50 30V18"/><path d="M38 21q12-10 24 0"/><circle cx="73" cy="68" r="2"/>',
+  tv:'<rect x="12" y="20" width="76" height="54" rx="5"/><path d="M40 82h20M50 74v8M38 37l25 10-25 11z"/>',
+  mobile:'<rect x="31" y="9" width="38" height="82" rx="7"/><path d="M43 17h14M35 75h30"/><circle cx="50" cy="83" r="2"/>'
+};
+
+document.documentElement.style.setProperty('--orange', CONFIG.couleurPrincipale);
+document.documentElement.style.setProperty('--black', CONFIG.couleurEnTete);
+document.documentElement.style.setProperty('--blue', CONFIG.couleurEncadre);
+const nomComplet=`${CONFIG.nom} ${CONFIG.sousTitre}`.trim();
+document.title=nomComplet;
+
+function logo(el){el.textContent=CONFIG.nom;const s=document.createElement('span');s.textContent='.';el.appendChild(s)}
+logo($('#logo'));logo($('#logoFooter'));
+
+$('#menuBtn').textContent=CONFIG.boutonMenu;
+const navInner=$('#navInner');
+CONFIG.footerLiens.forEach((t,i)=>{const a=document.createElement('a');a.href=i===0?'#':'#categories';a.setAttribute('data-home','');a.textContent=t;navInner.appendChild(a)});
+const navLogin=document.createElement('a');navLogin.href='#';navLogin.id='navLogin';navLogin.textContent=CONFIG.boutonContact;navInner.appendChild(navLogin);
+
+$('#homeTitle').textContent=CONFIG.titreAccueil;
+$('#homeText').textContent=CONFIG.texteAccueil;
+$('#accountTitle').textContent=CONFIG.encadreTitre;
+$('#accountText').textContent=CONFIG.encadreTexte;
+$('#loginBtn').textContent=CONFIG.boutonContact;
+$('#searchTitle').textContent=CONFIG.rechercheTitre;
+$('#searchInput').placeholder=CONFIG.recherchePlaceholder;
+$('#rubriquesTitle').textContent=CONFIG.rubriquesTitre;
+
+const cards=$('#cards');
+CONFIG.cartes.forEach(c=>{
+  const card=document.createElement('div');card.className='card';card.tabIndex=0;card.setAttribute('role','button');card.dataset.icone=c.icone;
+  card.innerHTML=`<div class="visual"><svg viewBox="0 0 100 100">${ICONES[c.icone]||''}</svg></div><div class="card-content"><h3></h3><p></p></div>`;
+  card.querySelector('h3').textContent=c.titre;card.querySelector('.card-content p').textContent=c.texte;
+  cards.appendChild(card);
+});
+
+$('#articlesTitle').textContent=CONFIG.articlesTitre;
+$('#noResults').textContent=CONFIG.aucunResultat;
+const articles=$('#articles');
+CONFIG.articles.forEach(a=>{
+  const d=document.createElement('div');d.className='article';
+  const b=document.createElement('button');b.type='button';b.setAttribute('aria-expanded','false');b.textContent=a.question;
+  const p=document.createElement('p');p.hidden=true;p.textContent=a.reponse;
+  d.appendChild(b);d.appendChild(p);articles.appendChild(d);
+});
+
+$('#backBtn').textContent=CONFIG.retour;
+$('#contactTitle').textContent=CONFIG.contactTitre;
+$('#contactIntro').textContent=CONFIG.contactIntro;
+$('#lblMessage').textContent=CONFIG.labelMessage;
+$('#cmsg').placeholder=CONFIG.placeholderMessage;
+$('#send').textContent=CONFIG.boutonEnvoyer;
+$('#doneTitle').textContent=CONFIG.succesTitre;
+$('#doneText').textContent=CONFIG.succesTexte;
+$('#again').textContent=CONFIG.boutonAutre;
+$('#cdTitle').textContent=CONFIG.cooldownTitre;
+$('#cdText').textContent=CONFIG.cooldownTexte;
+$('#cdBack').textContent=CONFIG.cooldownBouton;
+
+$('#footerCol').textContent=CONFIG.footerColonneTitre;
+const fl=$('#footerLinks');
+CONFIG.footerLiens.forEach((t,i)=>{const a=document.createElement('a');a.href=i===0?'#':'#categories';a.setAttribute('data-home','');a.textContent=t;fl.appendChild(a)});
+$('#footerInfoTitle').textContent=CONFIG.footerInfosTitre;
+$('#footerInfoText').textContent=CONFIG.footerInfosTexte;
+$('#footerCopy').textContent=`© ${new Date().getFullYear()} ${nomComplet}`;
+
+/* ——— Identité "web" du visiteur ——— */
+function visiteurId(){try{let v=localStorage.getItem('nova_id');if(!v){v='';for(let i=0;i<18;i++)v+=Math.floor(Math.random()*10);localStorage.setItem('nova_id',v)}return v}catch(_){let v='';for(let i=0;i<18;i++)v+=Math.floor(Math.random()*10);return v}}
+function visiteurPseudo(){try{let h=localStorage.getItem('nova_pseudo');if(!h){h='@'+Math.random().toString(36).replace(/[^a-z]/g,'').slice(0,4).padEnd(3,'x');localStorage.setItem('nova_pseudo',h)}return h}catch(_){return '@'+Math.random().toString(36).replace(/[^a-z]/g,'').slice(0,4).padEnd(3,'x')}}
+function appareil(){const ua=navigator.userAgent||'';let os='Web';if(/Android/i.test(ua))os='Android';else if(/iPhone|iPad|iPod/i.test(ua))os='iOS';else if(/Windows/i.test(ua))os='Windows';else if(/Mac OS/i.test(ua))os='Mac';else if(/Linux/i.test(ua))os='Linux';let br='navigateur';if(/Edg/i.test(ua))br='Edge';else if(/OPR|Opera/i.test(ua))br='Opera';else if(/Chrome/i.test(ua))br='Chrome';else if(/Firefox/i.test(ua))br='Firefox';else if(/Safari/i.test(ua))br='Safari';return br+' · '+os}
+
+/* ——— Limite d'envois (3 messages puis attente 24 h) ——— */
+const FENETRE=CONFIG.delaiHeures*3600*1000;
+function envois(){try{return JSON.parse(localStorage.getItem('nova_envois')||'[]').filter(t=>Date.now()-t<FENETRE)}catch(_){return []}}
+function enregistreEnvoi(){try{const l=envois();l.push(Date.now());localStorage.setItem('nova_envois',JSON.stringify(l))}catch(_){}}
+function attenteRestante(){const l=envois();if(l.length<CONFIG.maxMessages)return 0;return FENETRE-(Date.now()-Math.min.apply(null,l))}
+function formatCompte(ms){let s=Math.ceil(ms/1000);const h=Math.floor(s/3600);s%=3600;const m=Math.floor(s/60);s%=60;const p=n=>String(n).padStart(2,'0');if(h>0)return `${h}h ${p(m)}m ${p(s)}s`;if(m>0)return `${m}m ${p(s)}s`;return `${s}s`}
+
+/* ——— Comportements ——— */
+const menu=$('#menu'),homepage=$('#homepage'),login=$('#login'),search=$('#searchInput');
+const formView=$('#formView'),doneView=$('#doneView'),cooldownView=$('#cooldownView');
+const cmsg=$('#cmsg'),cn=$('#cn'),send=$('#send'),status=$('#status');
+let cdTimer=null;
+
+function closeMenu(){menu.classList.remove('open');$('#menuBtn').setAttribute('aria-expanded','false')}
+$('#menuBtn').addEventListener('click',()=>{const o=menu.classList.toggle('open');$('#menuBtn').setAttribute('aria-expanded',String(o))});
+function stopCd(){if(cdTimer){clearInterval(cdTimer);cdTimer=null}}
+function showHome(){stopCd();homepage.hidden=false;login.hidden=true;closeMenu();window.scrollTo(0,0)}
+function showContact(){const r=attenteRestante();if(r>0){showCooldown();return}stopCd();homepage.hidden=true;login.hidden=false;formView.hidden=false;doneView.hidden=true;cooldownView.hidden=true;status.textContent='';send.disabled=false;send.textContent=CONFIG.boutonEnvoyer;closeMenu();window.scrollTo(0,0);cmsg.focus()}
+function showCooldown(){homepage.hidden=true;login.hidden=false;formView.hidden=true;doneView.hidden=true;cooldownView.hidden=false;closeMenu();window.scrollTo(0,0);stopCd();
+  const tick=()=>{const r=attenteRestante();if(r<=0){stopCd();showContact();return}$('#cdTime').textContent=formatCompte(r);$('#cdBar').style.width=(100*(1-r/FENETRE)).toFixed(1)+'%'};
+  tick();cdTimer=setInterval(tick,1000);}
+$('#loginBtn').addEventListener('click',showContact);
+navLogin.addEventListener('click',e=>{e.preventDefault();showContact()});
+$('#backBtn').addEventListener('click',showHome);
+$('#cdBack').addEventListener('click',showHome);
+document.querySelectorAll('[data-home]').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();const t=link.getAttribute('href');showHome();if(t.length>1){const el=document.querySelector(t);if(el)el.scrollIntoView();}}));
+
+const sync=()=>{cn.textContent=cmsg.value.length};
+cmsg.addEventListener('input',sync);sync();
+
+$('#msgForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  status.textContent='';status.style.color='';
+  const text=cmsg.value.trim();
+  if(text.length<2){status.textContent="Écris au moins un petit message avant d'envoyer.";status.style.color='#c23b2e';cmsg.focus();return}
+  if(attenteRestante()>0){showCooldown();return}
+  send.disabled=true;const label=send.textContent;send.innerHTML='<span class="spin"></span>Envoi…';
+  const color=parseInt(String(CONFIG.couleurEmbed).replace('#',''),16)||0xED4245;
+  const payload={username:nomComplet,embeds:[{
+    title:CONFIG.titreEmbed,
+    color:color,
+    fields:[
+      {name:CONFIG.champMessage,value:text.slice(0,1024)},
+      {name:CONFIG.champUtilisateur,value:(visiteurPseudo()+' · '+appareil()).slice(0,1024)}
+    ],
+    footer:{text:"ID : "+visiteurId()},
+    timestamp:new Date().toISOString()
+  }]};
+  try{
+    const res=await fetch(CONFIG.webhook,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    if(!res.ok)throw new Error("code "+res.status);
+    enregistreEnvoi();
+    formView.hidden=true;doneView.hidden=false;window.scrollTo(0,0);
+  }catch(err){
+    send.disabled=false;send.textContent=label;
+    const d=(err&&err.message)?err.message:"réseau";
+    status.textContent="Envoi impossible ("+d+"). Réessaie, ou préviens l'admin du serveur.";status.style.color='#c23b2e';
+  }
+});
+$('#again').addEventListener('click',()=>{cmsg.value='';sync();showContact()});
+
+function filterArticles(){const q=search.value.toLowerCase().trim();let count=0;document.querySelectorAll('.article').forEach(a=>{const m=a.textContent.toLowerCase().includes(q);a.hidden=!m;if(m)count++});$('#noResults').hidden=count>0}
+search.addEventListener('input',filterArticles);
+document.querySelectorAll('.article button').forEach(b=>b.addEventListener('click',()=>{const c=b.nextElementSibling;c.hidden=!c.hidden;b.setAttribute('aria-expanded',String(!c.hidden))}));
+document.querySelectorAll('.card').forEach(card=>{function open(){search.value=card.dataset.icone;filterArticles();$('#articlesSection').scrollIntoView({behavior:'smooth'})}card.addEventListener('click',open);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}})});
+</script>
+</body></html>
